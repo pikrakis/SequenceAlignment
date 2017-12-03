@@ -1,0 +1,24 @@
+--------------------------------------------
+Essential algorithms for sequence alignment
+Author: Aggelos Pikrakis, Eng., Ph.D.
+email: pikrakis@unipi.gr
+--------------------------------------------
+
+This package contains implementations of the following sequence alignment algorithms:
+
+(1) Edit distance: edit_distance(y,x)
+(2) Dynamic Time Warping using the Sakoe-Chiba constraints: dtw_distance_sc(y,x)
+(3) Dynamic Time Warping using the Itakura constraints: dtw_distance_sc(y,x)
+(4) Longest Common Subsequence algorithm: lcs(y,x)
+
+In all cases, y is the test pattern and x is the reference pattern. All current implementations refer to 1-dimensional
+sequences. Due to the symmetric nature of some constraints, e.g., (2), it is unimportant which template is placed on
+which axis. Please read the literature for a theoretical study of the implemented algorithms (references will be added
+as the project develops).
+
+For reporting bugs, please use github's infrastructure. For questions, please use the email above.
+
+Best wishes,
+
+Aggelos Pikrakis
+
