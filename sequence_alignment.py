@@ -107,18 +107,7 @@ def lcs(y, x):
     return np.amax(s), s
 
 ###################################################################################################
-#test = other_functions.cr_random_list(-10, -5, 10) + [-1, 2, 1, 3, -1, 2] + other_functions.cr_random_list(-10, -5, 20)
 test = [-1, 2, 1, -1, -1, 2]
-#ref = list(range(0,len(test)))
 ref = [-1, 2, 1, -1, 2]
 c, s, predi, predj = dtw_distance_ita(test,ref)
 print('\ndtw cost = ' + str(c) + '\n')
-print(test)
-print(s)
-print(predi)
-print(predj)
-#plt.figure(1)
-#plt.imshow(s)
-#plt.plot([3,4],[1,2],'ro')
-#plt.plot([3,4],[1,2])
-#plt.show()
