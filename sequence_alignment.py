@@ -88,6 +88,7 @@ def dtw_distance_ita(y, x):
 
 
 def lcs(y, x):
+    # computes the length of the longest common subsequence of y and x
     lx = len(x)
     ly = len(y)
     s = np.zeros((ly, lx))
