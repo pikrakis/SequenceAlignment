@@ -31,21 +31,39 @@ def dtw_distance_sc(y, x):
     # local path constraints
     lx = len(x)
     ly = len(y)
-    s = np.zeros((ly,lx))
+    s = float('inf') * np.ones((ly, lx))
+    predi = np.ones((ly, lx)) * (-1)
+    predj = np.ones((ly, lx)) * (-1)
     s[0, 0] = abs(y[0] - x[0])
+
     # first column
     for i in range(1,ly):
         s[i, 0] = s[i-1, 0] + abs(y[i] - x[0])
+        predi[i, 0] = i-1
+        predj[i, 0] = 0
+
 
     # first row
     for j in range(1, lx):
         s[0, j] = s[0, j-1] + abs(y[0] - x[j])
+        predi[i, 0] = 0
+        predj[i, 0] = j-1
 
     # all other cost grid elements
     for i in range(1,ly):
         for j in range(1,lx):
-            s[i, j] = np.amin([s[i-1, j-1], s[i-1, j], s[i, j-1]]) + abs(y[i] - x[j])
-    return s[ly-1, lx-1]
+            q = [s[i-1, j-1], s[i-1, j], s[i, j-1]]
+            s[i, j] = np.amin(q) + abs(y[i] - x[j])
+            if np.argmin(q)==0:
+                predi[i, j] = i-1
+                predj[i, j] = j - 1
+            elif np.argmin(q)==1:
+                predi[i, j] = i - 1
+                predj[i, j] = j
+            else:
+                predi[i, j] = i
+                predj[i, j] = j - 1
+    return s[ly-1, lx-1], s, predi, predj
 ###################################################################################################
 
 
@@ -61,6 +79,7 @@ def dtw_distance_ita(y, x):
 
     # first row
     s[0, 1] = s[0, 0] + abs(y[0]-x[1])
+    predi[0, 1] = 0
     predj[0, 1] = 0
 
     # all other cost grid elements

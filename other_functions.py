@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 def cr_random_list(minrange, maxrange, listlength):
     # creates a list of length listlength of random integers in [minrange,maxrange]
@@ -27,6 +28,9 @@ def extract_best_path(s, predi, predj):
     return bp[::-1]
 
 
+def aux_fun(s, f):
+    c = list(np.where(s == f(s)))
+    return c
 
 
 

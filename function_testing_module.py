@@ -5,13 +5,14 @@ import other_functions
 import matplotlib.pyplot as plt
 import numpy as np
 
-test = [-1, 2, 1, -1, -1, 2]
+test = [-1, 2, 1, 1, 1, 1, -1, 2]
 ref = [-1, 2, 1, -1, 2]
-c, s, predi, predj = sequence_alignment.dtw_distance_ita(test,ref)
+c, s, predi, predj = sequence_alignment.dtw_distance_sc(test,ref)
 print('\ndtw cost = ' + str(c) + '\n')
 bp = other_functions.extract_best_path(s, predi, predj)
 print('best path = ' + str(bp))
 bp = np.array(bp)
+
 plt.plot(bp[:, 1], bp[:, 0], 'ro')
 plt.plot(bp[:, 1], bp[:, 0], linewidth=2.0)
 plt.ylabel('test sequence')
