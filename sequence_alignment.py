@@ -1,3 +1,6 @@
+# Implementation: Aggelos Pikrakis, pikrakis@unipi.gr
+# Educational material.
+###################################################################################################
 import numpy as np
 import matplotlib.pyplot as plt
 import other_functions

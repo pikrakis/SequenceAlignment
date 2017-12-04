@@ -1,3 +1,7 @@
+# Implementation: Aggelos Pikrakis, pikrakis@unipi.gr
+# Educational material.
+###################################################################################################
+
 import random
 import numpy as np
 

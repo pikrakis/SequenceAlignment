@@ -1,3 +1,6 @@
+# Implementation: Aggelos Pikrakis, pikrakis@unipi.gr
+# Educational material.
+###################################################################################################
 # this is where function testing takes place
 
 import sequence_alignment
@@ -5,7 +8,7 @@ import other_functions
 import matplotlib.pyplot as plt
 import numpy as np
 
-test = [-1, 2, 1, 1, 1, 1, -1, 2]
+test = [-1, 2, 2, 2, 1, 1, 1, 1, -1, 2]
 ref = [-1, 2, 1, -1, 2]
 c, s, predi, predj = sequence_alignment.dtw_distance_sc(test,ref)
 print('\ndtw cost = ' + str(c) + '\n')
