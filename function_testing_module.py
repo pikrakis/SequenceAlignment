@@ -3,6 +3,7 @@
 ###################################################################################################
 # this is where function testing takes place
 
+
 import sequence_alignment
 import other_functions
 import matplotlib.pyplot as plt

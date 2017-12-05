@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import other_functions
 ###################################################################################################
 
-
 def edit_distance(y, x):
     # computes the standard edit (Levenstein) distance between two symbol strings
     lx = len(x)
