@@ -1,5 +1,6 @@
 # Implementation: Aggelos Pikrakis, pikrakis@unipi.gr
 # Educational material.
+# Distributed under the GNU General Public License v2.0
 ###################################################################################################
 import numpy as np
 import matplotlib.pyplot as plt
