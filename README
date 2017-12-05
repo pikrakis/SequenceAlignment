@@ -3,6 +3,7 @@ Essential algorithms for sequence alignment
 Author: Aggelos Pikrakis, Eng., Ph.D.
 email: pikrakis@unipi.gr
 --------------------------------------------
+--- Distributed under the GNU General Public License v2.0
 
 This package contains implementations of the following sequence alignment algorithms:
 
