@@ -10,7 +10,7 @@ import numpy as np
 
 test = [-1, 2, 2, 2, 1, 1, 1, 1, -1, 2]
 ref = [-1, 2, 1, -1, 2]
-c, s, predi, predj = sequence_alignment.dtw_distance_sc(test,ref)
+c, s, predi, predj = sequence_alignment.edit_distance(test,ref)
 print('\ndtw cost = ' + str(c) + '\n')
 bp = other_functions.extract_best_path(s, predi, predj)
 print('best path = ' + str(bp))
