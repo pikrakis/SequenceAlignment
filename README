@@ -5,7 +5,7 @@ email: pikrakis@unipi.gr
 --------------------------------------------
 --- Distributed under the GNU General Public License v2.0
 
-This package contains implementations of the following sequence alignment algorithms:
+This package contains Python implementations of the following sequence alignment algorithms:
 
 (1) Edit distance: edit_distance(y,x)
 (2) Dynamic Time Warping using the Sakoe-Chiba constraints: dtw_distance_sc(y,x)
