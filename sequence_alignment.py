@@ -91,7 +91,7 @@ def dtw_distance_sc(y, x, gp_constraints):
 ###################################################################################################
 
 
-def dtw_distance_ita(y, x):
+def dtw_distance_ita(y, x, gp_constraints):
     # computes the dynamic time warping cost between two sequences of numbers using the Itakura
     # local path constraints
     lx = len(x)
@@ -102,29 +102,31 @@ def dtw_distance_ita(y, x):
     s[0, 0] = abs(y[0] - x[0])
 
     # first row
-    s[0, 1] = s[0, 0] + abs(y[0]-x[1])
-    predi[0, 1] = 0
-    predj[0, 1] = 0
+    if abs(0-1)<=gp_constraints:
+        s[0, 1] = s[0, 0] + abs(y[0]-x[1])
+        predi[0, 1] = 0
+        predj[0, 1] = 0
 
     # all other cost grid elements
     for i in range(1,ly):
         for j in range(1,lx):
-            offset = 0
-            if i > 1:
-                if j > 1 and predi[i, j-1] == i:
-                    q = [s[i - 1, j - 1], s[i - 2, j - 1]]
-                    offset = 1
+            if abs(i-j) <= gp_constraints:
+                offset = 0
+                if i > 1:
+                    if j > 1 and predi[i, j-1] == i:
+                        q = [s[i - 1, j - 1], s[i - 2, j - 1]]
+                        offset = 1
+                    else:
+                        q = [s[i, j-1], s[i-1, j-1], s[i-2, j-1]]
                 else:
-                    q = [s[i, j-1], s[i-1, j-1], s[i-2, j-1]]
-            else:
-                if j > 1 and predi[i, j-1] == i:
-                    q = [s[i - 1, j - 1]]
-                    offset = 1
-                else:
-                    q = [s[i, j - 1], s[i - 1, j - 1]]
-            s[i, j] = np.amin(q) + abs(y[i] - x[j])
-            predi[i, j] = i - offset - np.argmin(q)
-            predj[i, j] = j - 1
+                    if j > 1 and predi[i, j-1] == i:
+                        q = [s[i - 1, j - 1]]
+                        offset = 1
+                    else:
+                        q = [s[i, j - 1], s[i - 1, j - 1]]
+                s[i, j] = np.amin(q) + abs(y[i] - x[j])
+                predi[i, j] = i - offset - np.argmin(q)
+                predj[i, j] = j - 1
 
     return s[ly-1, lx-1], s, predi, predj
 ###################################################################################################
