@@ -15,7 +15,7 @@ ref = [-1, 2, 1, -1, 2]
 c, s, predi, predj = sequence_alignment.dtw_distance_ita(test,ref,float('inf')) # no global constraints
 #c, s, predi, predj = sequence_alignment.dtw_distance_sc(test, ref, 2)
 print('\ndtw cost = ' + str(c) + '\n')
-bp = other_functions.extract_best_path(s, predi, predj)
+bp = other_functions.backtracking(s, predi, predj)
 print('best path = ' + str(bp))
 bp = np.array(bp)
 

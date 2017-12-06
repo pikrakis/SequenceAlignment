@@ -14,11 +14,8 @@ def cr_random_list(minrange, maxrange, listlength):
     return a
 
 
-def extract_best_path(s, predi, predj):
-    # c = list(np.where(s == np.min(s)))
-    # xc = c[0][0]
-    # yc = c[1][0]
-
+def backtracking(s, predi, predj):
+    
     v = s.shape
     xc = int(v[0]) - 1
     yc = int(v[1]) - 1
