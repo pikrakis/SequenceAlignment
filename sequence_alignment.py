@@ -190,7 +190,7 @@ def forwardtracking(s, frwrdi, frwrdj):
     # value. This function can be used in cojunction with the lcs implementation
 
     xc, yc = other_functions.aux_fun(s, np.max)
-    bp=[]
+    bp = []
 
     while (xc > -1) and (yc > -1):
         bp.append([xc, yc])
@@ -200,4 +200,17 @@ def forwardtracking(s, frwrdi, frwrdj):
         yc = tmpyc
     return bp
 
+
+def print_alignment(y, x, bp):
+    # prints the alignment of y vs x, inserting gaps when needed
+    L = len(bp)
+    for k in range(L-1):
+        print('%3d <----> %3d' % (y[bp[k][0]],x[bp[k][1]]))
+        if bp[k+1][0] > bp[k][0]+1:
+            for m in range(bp[k][0]+1, bp[k+1][0]):
+                print('%3d <----> %3s'% (y[m], '-'))
+        if bp[k+1][1] > bp[k][1]+1:
+            for m in range(bp[k][1]+1, bp[k+1][1]):
+                print('%3s <----> %3d' % ('-', x[m]))
+    print('%3d <----> %3d' % (y[bp[-1][0]], x[bp[-1][1]]))
 

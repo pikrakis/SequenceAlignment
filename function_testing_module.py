@@ -10,16 +10,19 @@ import other_functions
 import matplotlib.pyplot as plt
 import numpy as np
 
-test = [-1, 2, 2, 2, 1, -1, 2]
+test = [1, 2, 2, -1, 2, 2, 2, 1, -1, 2]
 ref = [-1, 2, 1, -1, 2]
+
 c, s, frwrdi, frwrdj = sequence_alignment.lcs(test,ref) # no global constraints
 #c, s, predi, predj = sequence_alignment.dtw_distance_sc(test, ref, 2)
+
 print('\nsimilarity  = ' + str(c) + '\n')
-#print(s)
+
 bp = sequence_alignment.forwardtracking(s, frwrdi, frwrdj)
 print('best path = ' + str(bp))
-bp = np.array(bp)
+sequence_alignment.print_alignment(test, ref, bp)
 
+bp = np.array(bp)
 plt.plot(bp[:, 1], bp[:, 0], 'ro')
 plt.plot(bp[:, 1], bp[:, 0], linewidth=2.0)
 plt.ylabel('test sequence')
