@@ -14,25 +14,11 @@ def cr_random_list(minrange, maxrange, listlength):
     return a
 
 
-def backtracking(s, predi, predj):
-    
-    v = s.shape
-    xc = int(v[0]) - 1
-    yc = int(v[1]) - 1
-    bp=[]
-
-    while (xc > -1) and (yc > -1):
-        bp.append([xc, yc])
-        tmpxc = int(predi[xc, yc])
-        tmpyc = int(predj[xc, yc])
-        xc = tmpxc
-        yc = tmpyc
-    return bp[::-1]
-
-
 def aux_fun(s, f):
     c = list(np.where(s == f(s)))
-    return c
+    cx = c[0][-1]
+    cy = c[1][-1]
+    return cx, cy
 
 
 

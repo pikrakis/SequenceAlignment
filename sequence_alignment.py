@@ -136,7 +136,10 @@ def lcs(y, x):
     # computes the length of the longest common subsequence of y and x
     lx = len(x)
     ly = len(y)
+    frwrdi = np.ones((ly, lx)) * (-1)
+    frwrdj = np.ones((ly, lx)) * (-1)
     s = np.zeros((ly, lx))
+
     # last column
     for i in range(0, ly):
         s[i, lx-1] = int(y[i] == x[lx-1])
@@ -145,12 +148,56 @@ def lcs(y, x):
     for j in range(0, lx):
         s[ly-1, j] = int(y[ly-1] == x[j])
 
-    for i in range(ly-2,-1,-1):
-        for j in range(lx-2,-1,-1):
-            m1 = np.amax(s[i+1,j+1:lx])
-            m2 = np.amax(s[i+1:ly,j+1])
+    for i in range(ly-2, -1, -1):
+        for j in range(lx-2, -1, -1):
+            m1 = np.amax(s[i + 1,j + 1:lx])
+            m2 = np.amax(s[i + 1:ly, j + 1])
+            if np.amax([m1, m2]) == m1:
+                w = np.argmax(s[i + 1, j + 1:lx]) + 1
+                frwrdi[i, j] = i + 1
+                frwrdj[i, j] = j + w
+            else:
+                w = np.argmax(s[i + 1:ly, j + 1]) + 1
+                frwrdi[i, j] = i + w
+                frwrdj[i, j] = j+1
             s[i, j] = int(y[i] == x[j]) + np.amax([m1,m2])
-    return np.amax(s), s
+    return np.amax(s), s, frwrdi, frwrdj
 
 ###################################################################################################
+
+def backtracking(s, predi, predj):
+
+    # performs backtracking on a dissimilarity grid, starting from the node that corresponds to the last element of
+    # each sequence
+
+    v = s.shape
+    xc = int(v[0]) - 1
+    yc = int(v[1]) - 1
+    bp=[]
+
+    while (xc > -1) and (yc > -1):
+        bp.append([xc, yc])
+        tmpxc = int(predi[xc, yc])
+        tmpyc = int(predj[xc, yc])
+        xc = tmpxc
+        yc = tmpyc
+    return bp[::-1]
+###################################################################################################
+
+
+def forwardtracking(s, frwrdi, frwrdj):
+    # performs forward tracking on a similarity grid, starting from the node that has accumulated the maximun similarity
+    # value. This function can be used in cojunction with the lcs implementation
+
+    xc, yc = other_functions.aux_fun(s, np.max)
+    bp=[]
+
+    while (xc > -1) and (yc > -1):
+        bp.append([xc, yc])
+        tmpxc = int(frwrdi[xc, yc])
+        tmpyc = int(frwrdj[xc, yc])
+        xc = tmpxc
+        yc = tmpyc
+    return bp
+
 
